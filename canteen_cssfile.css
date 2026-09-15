@@ -1,0 +1,311 @@
+/* ============================================
+   Canteen website - shared stylesheet
+   Used by index.html and menu.html
+   ============================================ */
+
+/* ---- 1. Colour and spacing variables ---- */
+:root {
+  --paper:    #F6EEDF;   /* page background - warm oat */
+  --surface:  #FFFCF5;   /* cards and panels */
+  --ink:      #3B2317;   /* body text - cocoa */
+  --maroon:   #7A2E2E;   /* headings, header bar */
+  --marigold: #E8A33D;   /* prices, highlights */
+  --leaf:     #4C6B3C;   /* veg marker, small accents */
+  --steel:    #C3CACB;   /* hairlines */
+
+  --wrap: 68rem;         /* max page width */
+}
+
+/* ---- 2. Base ---- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Karla", "Segoe UI", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: "Bitter", Georgia, serif;
+  color: var(--maroon);
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+
+h1 { font-size: 2.6rem; }
+h2 { font-size: 1.7rem; }
+h3 { font-size: 1.15rem; }
+
+p { margin: 0 0 1rem; max-width: 60ch; }
+
+a { color: var(--maroon); }
+
+/* Keyboard users must be able to see where they are */
+a:focus-visible {
+  outline: 3px solid var(--marigold);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---- 3. Header and navigation ---- */
+.site-header {
+  background: var(--maroon);
+  color: var(--paper);
+  padding: 1rem 0;
+}
+
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Bitter", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.logo span {
+  display: block;
+  font-family: "Karla", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--marigold);
+}
+
+.nav a {
+  color: var(--paper);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav a:hover,
+.nav a.current {
+  border-bottom-color: var(--marigold);
+}
+
+/* ---- 4. Hero (home page) ---- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  padding: 3.5rem 0;
+}
+
+.hero-text .lead {
+  font-size: 1.1rem;
+}
+
+.hours {
+  border-left: 4px solid var(--marigold);
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+}
+
+.hours dt {
+  font-weight: 700;
+  color: var(--maroon);
+}
+
+.hours dd {
+  margin: 0 0 0.6rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  background: var(--maroon);
+  color: var(--paper);
+  text-decoration: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+.btn:hover { background: #5E2222; }
+
+/* The "today's board" panel - the main visual moment of the page */
+.board {
+  background: var(--surface);
+  border: 1px solid var(--steel);
+  border-top: 8px solid var(--marigold);
+  padding: 1.8rem;
+  box-shadow: 6px 6px 0 rgba(122, 46, 46, 0.12);
+}
+
+.board h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.board .date {
+  font-size: 0.9rem;
+  color: var(--leaf);
+  margin-bottom: 1.2rem;
+}
+
+/* ---- 5. Menu rows with dotted leader lines ---- */
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+}
+
+.row .name { font-weight: 700; }
+
+.row .dots {
+  flex: 1;
+  border-bottom: 2px dotted var(--steel);
+  /* nudge the dots down to sit on the text baseline */
+  transform: translateY(-4px);
+}
+
+.row .price {
+  font-family: "Bitter", Georgia, serif;
+  font-weight: 700;
+  color: var(--maroon);
+}
+
+.row .note {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--leaf);
+}
+
+/* Veg / non-veg markers, like the ones printed on real menus */
+.mark {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--leaf);
+  position: relative;
+  margin-right: 0.45rem;
+}
+
+.mark::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--leaf);
+}
+
+.mark.nonveg { border-color: #8A4B2A; }
+.mark.nonveg::after { background: #8A4B2A; }
+
+/* ---- 6. Counters section (home page) ---- */
+.counters {
+  padding: 2.5rem 0 3.5rem;
+  border-top: 1px solid var(--steel);
+}
+
+.counter-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.counter-list li {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--steel);
+}
+
+.counter-list li p { margin: 0; }
+
+/* ---- 7. Info strip ---- */
+.strip {
+  background: var(--maroon);
+  color: var(--paper);
+  padding: 2rem 0;
+}
+
+.strip h2 { color: var(--marigold); }
+.strip p  { margin-bottom: 0; }
+
+/* ---- 8. Menu page ---- */
+.menu-head {
+  padding: 3rem 0 1.5rem;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 4rem;
+  padding-bottom: 3rem;
+}
+
+.section-title {
+  border-bottom: 3px solid var(--marigold);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--steel);
+}
+
+/* ---- 9. Footer ---- */
+.site-footer {
+  background: #2C1A12;
+  color: var(--paper);
+  padding: 2.5rem 0;
+  font-size: 0.95rem;
+}
+
+.site-footer h3 { color: var(--marigold); }
+
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.site-footer p { margin-bottom: 0.3rem; }
+.site-footer a { color: var(--paper); }
+
+/* ---- 10. Small screens ---- */
+@media (max-width: 720px) {
+  h1 { font-size: 2rem; }
+
+  .hero,
+  .menu-grid,
+  .footer-cols {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero { padding: 2rem 0; }
+
+  .counter-list li {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  .nav a { margin: 0 1.2rem 0 0; }
+}
